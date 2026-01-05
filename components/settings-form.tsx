@@ -92,7 +92,7 @@ export function SettingsForm({ profile }: SettingsFormProps) {
                         <Input
                             id="companyName"
                             name="companyName"
-                            defaultValue={profile?.companyName || "AutoTrust Pro"}
+                            defaultValue={profile?.companyName || "Bitgard"}
                             placeholder="Your Dealership Name"
                             required
                         />

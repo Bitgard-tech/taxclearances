@@ -330,7 +330,7 @@ export default function ReportsPage() {
                 <div style={{ borderBottom: '3px double #000', paddingBottom: '15px', marginBottom: '20px' }}>
                     <div style={{ textAlign: 'center' }}>
                         <h1 style={{ fontSize: '24px', fontWeight: 'bold', letterSpacing: '2px', margin: 0, textTransform: 'uppercase' }}>
-                            {dealerProfile?.companyName || "AutoTrust Pro"}
+                            {dealerProfile?.companyName || "Bitgard"}
                         </h1>
                         <p style={{ fontSize: '12px', margin: '5px 0 0 0', color: '#444' }}>Used Vehicle Dealership</p>
                         <p style={{ fontSize: '10px', margin: '3px 0 0 0', color: '#666' }}>
@@ -491,7 +491,7 @@ export default function ReportsPage() {
 
                 {/* Footer */}
                 <div style={{ marginTop: '30px', paddingTop: '10px', borderTop: '1px solid #ccc', textAlign: 'center', fontSize: '9px', color: '#666' }}>
-                    <p>AutoTrust Pro Vehicle Management System - Generated on {reportDate}</p>
+                    <p>Bitgard Vehicle Management System - Generated on {reportDate}</p>
                 </div>
             </div>
         </>

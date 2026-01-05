@@ -28,7 +28,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ id: str
         notFound();
     }
 
-    const companyName = dealerProfile?.companyName || "AutoTrust Pro";
+    const companyName = dealerProfile?.companyName || "Bitgard";
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white dark:from-emerald-950/20 dark:to-background">

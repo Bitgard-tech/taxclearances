@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { Car, LayoutDashboard, Package, FileText, Shield, Settings } from "lucide-react";
+import { Car, LayoutDashboard, Package, FileText, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSwipeable } from "react-swipeable";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -13,7 +14,7 @@ const navItems = [
     { href: "/reports", icon: FileText, label: "Tax Reports" },
 ];
 
-export function AppNav({ children, companyName = "AutoTrust Pro" }: { children: React.ReactNode, companyName?: string }) {
+export function AppNav({ children, companyName = "Bitgard" }: { children: React.ReactNode, companyName?: string }) {
     const pathname = usePathname();
     const router = useRouter();
 
@@ -87,8 +88,8 @@ export function AppNav({ children, companyName = "AutoTrust Pro" }: { children: 
                 </nav>
                 <div className="p-4 border-t">
                     <div className="flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground">
-                        <Shield className="h-4 w-4" />
-                        <span>Verified by {companyName.split(' ')[0]}</span>
+                        <Image src="/logo.png" alt="Bitgard" width={20} height={20} className="object-contain" />
+                        <span>Verified by Bitgard</span>
                     </div>
                 </div>
             </aside>

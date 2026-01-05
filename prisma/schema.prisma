@@ -70,7 +70,7 @@ model Customer {
 
 model DealerProfile {
   id          String   @id @default(uuid())
-  companyName String   @default("AutoTrust Pro")
+  companyName String   @default("Bitgard")
   address     String   @default("")
   phone       String   @default("")
   email       String   @default("")

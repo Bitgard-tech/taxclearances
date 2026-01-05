@@ -17,14 +17,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AutoTrust Pro | Used Car Dealer Management",
+  title: "Bitgard | Used Car Dealer Management",
   description: "Professional inventory, expense tracking & tax reporting for used car dealers in Sri Lanka",
   manifest: "/manifest.json",
   themeColor: "#0a0a0a",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "AutoTrust Pro",
+    title: "Bitgard",
   },
 };
 
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   // Using static company name to avoid database call during build
   // The actual company name is fetched on specific pages that need it
-  const companyName = "AutoTrust Pro";
+  const companyName = "Bitgard";
 
   return (
     <html lang="en" suppressHydrationWarning>

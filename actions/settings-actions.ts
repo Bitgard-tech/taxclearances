@@ -19,7 +19,7 @@ export async function getDealerProfile() {
             // Create default profile if none exists
             profile = await db.dealerProfile.create({
                 data: {
-                    companyName: "AutoTrust Pro",
+                    companyName: "Bitgard",
                 }
             });
         }

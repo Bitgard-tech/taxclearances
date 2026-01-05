@@ -28,7 +28,7 @@ export default async function VehicleDetailsPage({ params }: { params: Promise<{
     }
 
     const vehicle = vehicleResult.data;
-    const companyName = "AutoTrust Pro"; // Fallback or fetch from settings if needed elsewhere
+    const companyName = "Bitgard"; // Fallback or fetch from settings if needed elsewhere
 
     const totalExpenses = vehicle.expenses.reduce((sum: number, e: any) => sum + Number(e.amount), 0);
     const breakEvenCost = Number(vehicle.purchasePrice) + totalExpenses;
