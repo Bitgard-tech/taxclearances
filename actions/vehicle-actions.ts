@@ -93,7 +93,7 @@ export async function updateVehicle(data: z.input<typeof updateVehicleSchema>) {
         if (error.code === 'P2002') {
             return { success: false, message: "Registration number already exists." };
         }
-        return { success: false, message: "Failed to update vehicle." };
+        return { success: false, message: `Failed to update vehicle: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -107,9 +107,10 @@ export async function deleteVehicle(id: string) {
         revalidatePath('/');
 
         return { success: true, message: "Vehicle deleted successfully." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Delete vehicle error:", error);
-        return { success: false, message: "Failed to delete vehicle." };
+        return { success: false, message: `Failed to delete vehicle: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -134,9 +135,10 @@ export async function markAsSold(data: z.infer<typeof markSoldSchema>) {
         revalidatePath('/');
 
         return { success: true, message: "Vehicle marked as sold." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Mark sold error:", error);
-        return { success: false, message: "Failed to update vehicle status." };
+        return { success: false, message: `Failed to update vehicle status: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -168,9 +170,10 @@ export async function getVehicles() {
             }))
         }));
         return { success: true, data: vehicles };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Get vehicles error:", error);
-        return { success: false, message: "Failed to fetch vehicles." };
+        return { success: false, message: `Failed to fetch vehicles: ${error.message || "Unknown error"}` };
     }
 }
 

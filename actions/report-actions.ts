@@ -101,9 +101,10 @@ export async function getAnnualTaxReport(year: number) {
         });
 
         return { success: true, data: { items, monthlyBreakdown } };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Report error:", error);
-        return { success: false, message: "Failed to generate report." };
+        return { success: false, message: `Failed to generate report: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -160,8 +161,9 @@ export async function getMonthlyTaxReport(month: number, year: number) {
         });
 
         return { success: true, data: report };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Report error:", error);
-        return { success: false, message: "Failed to generate report." };
+        return { success: false, message: `Failed to generate report: ${error.message || "Unknown error"}` };
     }
 }

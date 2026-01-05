@@ -25,9 +25,10 @@ export async function getDealerProfile() {
         }
 
         return { success: true, data: profile };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Failed to fetch dealer profile:", error);
-        return { success: false, message: "Failed to load settings." };
+        return { success: false, message: `Failed to load settings: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -55,9 +56,11 @@ export async function updateDealerProfile(data: z.infer<typeof dealerProfileSche
         revalidatePath('/settings');
         revalidatePath('/reports');
         revalidatePath('/', 'layout');
+        revalidatePath('/', 'layout');
         return { success: true, message: "Settings updated successfully." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Update settings error:", error);
-        return { success: false, message: "Failed to update settings." };
+        return { success: false, message: `Failed to update settings: ${error.message || "Unknown error"}` };
     }
 }

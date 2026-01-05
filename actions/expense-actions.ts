@@ -41,9 +41,10 @@ export async function addExpense(data: z.infer<typeof expenseSchema>) {
 
         revalidatePath(`/cars/${result.data.vehicleId}`);
         return { success: true, message: "Expense added successfully." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Add expense error:", error);
-        return { success: false, message: "Failed to add expense." };
+        return { success: false, message: `Failed to add expense: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -80,9 +81,10 @@ export async function updateExpense(data: z.infer<typeof updateExpenseSchema>) {
 
         revalidatePath(`/cars/${result.data.vehicleId}`);
         return { success: true, message: "Expense updated successfully." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Update expense error:", error);
-        return { success: false, message: "Failed to update expense." };
+        return { success: false, message: `Failed to update expense: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -94,8 +96,9 @@ export async function deleteExpense(id: string, vehicleId: string) {
 
         revalidatePath(`/cars/${vehicleId}`);
         return { success: true, message: "Expense deleted successfully." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Delete expense error:", error);
-        return { success: false, message: "Failed to delete expense." };
+        return { success: false, message: `Failed to delete expense: ${error.message || "Unknown error"}` };
     }
 }
