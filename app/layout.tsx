@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppNav } from "@/components/app-nav";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,6 +52,7 @@ export default function RootLayout({
             {children}
           </AppNav>
           <Toaster closeButton />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
