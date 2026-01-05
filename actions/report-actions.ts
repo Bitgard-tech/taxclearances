@@ -29,9 +29,11 @@ export interface AnnualReportData {
     }[];
 }
 
+const toCurrency = (amount: number) => Number(amount.toFixed(2));
+
 export async function getAnnualTaxReport(year: number) {
-    const startDate = new Date(year, 0, 1); // Jan 1
-    const endDate = new Date(year, 11, 31, 23, 59, 59); // Dec 31
+    const startDate = new Date(Date.UTC(year, 0, 1)); // Jan 1 UTC
+    const endDate = new Date(Date.UTC(year, 11, 31, 23, 59, 59)); // Dec 31 UTC
 
     try {
         const vehicles = await db.vehicle.findMany({
@@ -56,14 +58,15 @@ export async function getAnnualTaxReport(year: number) {
 
             vehicle.expenses.forEach(expense => {
                 const amount = Number(expense.amount);
-                expensesByCategory[expense.category] = (expensesByCategory[expense.category] || 0) + amount;
+                expensesByCategory[expense.category] = toCurrency((expensesByCategory[expense.category] || 0) + amount);
                 totalExpenses += amount;
             });
+            totalExpenses = toCurrency(totalExpenses);
 
             const purchasePrice = Number(vehicle.purchasePrice);
             const soldPrice = Number(vehicle.soldPrice || 0);
-            const totalCost = purchasePrice + totalExpenses;
-            const profit = soldPrice - totalCost;
+            const totalCost = toCurrency(purchasePrice + totalExpenses);
+            const profit = toCurrency(soldPrice - totalCost);
             const month = vehicle.soldDate ? vehicle.soldDate.getMonth() + 1 : 0;
 
             return {
@@ -91,9 +94,9 @@ export async function getAnnualTaxReport(year: number) {
                 month: index + 1,
                 monthName,
                 vehiclesSold: monthItems.length,
-                revenue: monthItems.reduce((sum, item) => sum + item.soldPrice, 0),
-                costs: monthItems.reduce((sum, item) => sum + item.totalCost, 0),
-                profit: monthItems.reduce((sum, item) => sum + item.profit, 0),
+                revenue: toCurrency(monthItems.reduce((sum, item) => sum + item.soldPrice, 0)),
+                costs: toCurrency(monthItems.reduce((sum, item) => sum + item.totalCost, 0)),
+                profit: toCurrency(monthItems.reduce((sum, item) => sum + item.profit, 0)),
             };
         });
 

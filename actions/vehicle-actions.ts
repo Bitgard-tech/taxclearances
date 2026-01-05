@@ -50,9 +50,13 @@ export async function createVehicle(data: z.input<typeof createVehicleSchema>) {
         revalidatePath('/');
 
         return { success: true, message: "Vehicle created successfully." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Create vehicle error:", error);
-        return { success: false, message: "Failed to create vehicle." };
+        if (error.code === 'P2002') {
+            return { success: false, message: "Registration number already exists." };
+        }
+        return { success: false, message: `Failed to create vehicle: ${error.message || "Unknown error"}` };
     }
 }
 
@@ -83,8 +87,12 @@ export async function updateVehicle(data: z.input<typeof updateVehicleSchema>) {
         revalidatePath('/inventory');
         revalidatePath(`/cars/${id}`);
         return { success: true, message: "Vehicle updated successfully." };
-    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
         console.error("Update vehicle error:", error);
+        if (error.code === 'P2002') {
+            return { success: false, message: "Registration number already exists." };
+        }
         return { success: false, message: "Failed to update vehicle." };
     }
 }
